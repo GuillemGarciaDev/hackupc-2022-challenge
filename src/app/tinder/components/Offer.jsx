@@ -3,7 +3,7 @@ import { AiOutlineLink } from 'react-icons/ai';
 import { ImCross } from 'react-icons/im';
 import { BsCheckLg } from 'react-icons/bs';
 import {HiMail} from 'react-icons/hi'
-
+import { useNavigate } from 'react-router-dom';
 import Card from './Card'
 import {Link} from 'react-router-dom'
 
@@ -29,9 +29,7 @@ const Offer = ({offers}) => {
 
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const [successStatus, setSuccessStatus] = useState(false)
-
-  const [successMessage, setSuccessMessage] = useState(null)
+  const navigate = useNavigate()
 
   const handleSwipeRight = () => {
 
@@ -67,7 +65,7 @@ const Offer = ({offers}) => {
       })
 
       if (response.status === 200) {
-        
+        navigate('/sucess')
       }
     } 
     else {
@@ -119,7 +117,7 @@ const Offer = ({offers}) => {
       </div>
 
       <div className="flex flex-col justify-center w-full">
-        <p className="text-2xl font-bold text-center my-20">You have saved <span className="text-[#167DB7]">{emailSaved.length}</span> emails!</p>
+        <p className="text-2xl font-bold text-center my-20">You have saved <span className="text-[#167DB7]">{emailSaved.length}</span> offers!</p>
         <p className="text-md my-2">Add your email to get a message from every offer you saved</p>
         <input onChange={(e) => {setEmail(e.target.value); if (e.target.value.length > 0) setErrorStatus(false)}} placeholder="Your email" type="email" className="shadow-xl w-full h-10 px-2 my-4" />
         {errorStatus && (
@@ -135,7 +133,7 @@ const Offer = ({offers}) => {
           <button onClick={handleSendMail} className="bg-[#112D4E] py-2 px-8 rounded-xl mb-20 mt-10">
             <div className="flex flex-row justify-center items-center">
               <HiMail className="text-white text-md"/>
-              <p className="text-white ml-2">SEND MAIL</p>
+              <p className="text-white font-bold ml-2">SEND MAIL</p>
             </div>
           </button>
           
