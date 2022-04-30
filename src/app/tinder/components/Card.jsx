@@ -11,11 +11,11 @@ const Card = ({currentOffer}) => {
         
         
         <motion.div
-            initial={{opacity:0}}
-            animate={{ opacity: 1}}
-            transition={{duration: 0.5}}
+            
+            animate={{ scale: [0.8, 1]}}
+            transition={{duration: 0.1}}
         >
-            <div className='mx-6 mt-5 h-96 rounded-lg bg-gradient-to-br from-[#DBE2EF] to-white flex flex-col border-blue-200 border-solid border-2 z-10 absolute inset-0 flex  z-20'>
+            <div className='mx-6 mt-5 h-96 rounded-lg bg-gradient-to-br from-[#DBE2EF] to-white flex flex-col border-blue-200 border-solid border-2'>
             <div className='flex flex-row justify-between items-center mx-6 mt-4'>
                 <div className='h-12 w-12'>
                 <img
