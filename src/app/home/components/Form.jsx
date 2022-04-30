@@ -16,7 +16,7 @@ const Form = () => {
   const [processing, setProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [errorStatus, setErrorStatus] = useState(false);
-  const [responseData, setResponseData] = useState(null);
+  
 
   const handleSubmit = async () => {
     if (description !== null && description.length > 0) {
