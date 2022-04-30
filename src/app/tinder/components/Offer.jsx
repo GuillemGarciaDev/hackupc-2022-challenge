@@ -9,31 +9,31 @@ import { ImCross } from 'react-icons/im';
 import { BsCheckLg } from 'react-icons/bs';
 import {motion } from 'framer-motion'
 
-const Offer = () => {
-  const dummy = Data.offers[11];
+const Offer = ({offers}) => {
+  
 
-  const allOffers = Data.offers;
+  const allOffers = offers;
 
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [nextIndex, setNextIndex] = useState(1)
 
-  const [currentOffer, setCurrentOffer] = useState(allOffers[currentIndex])
+  const [nextIndex, setNextIndex] = useState(0)
+
   const [nextOffer, setNextOffer] = useState(allOffers[nextIndex])
 
   const handleSwipeRight = () => {
 
-    setCurrentIndex(currentIndex + 1)
-    setNextIndex(nextIndex + 1)
-    setCurrentOffer(allOffers[currentIndex])
-    setNextOffer(allOffers[nextIndex])
+    if (nextIndex + 1 < allOffers.length) {
+      setNextIndex(nextIndex + 1)
+      setNextOffer(allOffers[nextIndex])
+    }
+
   }
 
   const handleSwipeLeft = () => {
 
-    setCurrentIndex(currentIndex + 1)
-    setNextIndex(nextIndex + 1)
-    setCurrentOffer(allOffers[currentIndex])
-    setNextOffer(allOffers[nextIndex])
+    if (nextIndex + 1 < allOffers.length) {
+      setNextIndex(nextIndex + 1)
+      setNextOffer(allOffers[nextIndex])
+    }
   }
 
   const variants = {
