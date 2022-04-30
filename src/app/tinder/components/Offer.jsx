@@ -23,7 +23,15 @@ const Offer = ({offers}) => {
 
   const [emailSaved, setEmailSaved] = useState([])
 
-  const [email, setEmail] = useState([])
+  const [email, setEmail] = useState(null)
+
+  const [errorStatus, setErrorStatus] = useState(false);
+
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const [successStatus, setSuccessStatus] = useState(false)
+
+  const [successMessage, setSuccessMessage] = useState(null)
 
   const handleSwipeRight = () => {
 
@@ -51,7 +59,7 @@ const Offer = ({offers}) => {
 
   const handleSendMail = async () => {
 
-    if (email != null || email.length > 0) {
+    if (email != null && email.length > 0) {
 
       let response = await axios.post(API_MAIL_URL, {
         email, 
@@ -59,10 +67,14 @@ const Offer = ({offers}) => {
       })
 
       if (response.status === 200) {
-        console.log(response)
+        
       }
     } 
-
+    else {
+      setErrorMessage("Write a valid email address")
+      setErrorStatus(true)
+      
+    }
   }
 
 
@@ -82,9 +94,9 @@ const Offer = ({offers}) => {
             </button>
           </div>
           <div className='flex flex-row justify-center items-center rounded-full h-14 w-14 border-2 border-solid border-gray-100'>
-            <button>
+            <a href={nextOffer.link} target="_blank" rel="noreferrer">
               <AiOutlineLink className='text-yellow-400 text-xl' />
-            </button>
+            </a>
           </div>
           <div className='flex flex-row justify-center items-center rounded-full h-14 w-14 border-2 border-solid border-gray-100'>
             <button onClick={handleSwipeRight}>
@@ -94,11 +106,11 @@ const Offer = ({offers}) => {
         </div>
       </div>
 
-      <div className='my-10 flex flex-row justify-center'>
+      <div className='mt-6 flex flex-row justify-center'>
         <Link to='/list'><p className='text-[#767676]'>See all</p></Link>
       </div>
 
-      <div class="flex justify-center my-20">
+      <div class="flex justify-center my-10">
         <div class="animate-bounce bg-white  p-2 w-10 h-10 ring-1 ring-slate-900/5  shadow-lg shadow-blue-200 rounded-full flex items-center justify-center">
           <svg class="w-6 h-6 text-[#167DB7]" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
             <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
@@ -109,7 +121,16 @@ const Offer = ({offers}) => {
       <div className="flex flex-col justify-center w-full">
         <p className="text-2xl font-bold text-center my-20">You have saved <span className="text-[#167DB7]">{emailSaved.length}</span> emails!</p>
         <p className="text-md my-2">Add your email to get a message from every offer you saved</p>
-        <input onChange={(e) => setEmail(e.target.value)} placeholder="Your email" type="email" className="shadow-xl w-full h-10 px-2 my-6" />
+        <input onChange={(e) => {setEmail(e.target.value); if (e.target.value.length > 0) setErrorStatus(false)}} placeholder="Your email" type="email" className="shadow-xl w-full h-10 px-2 my-4" />
+        {errorStatus && (
+            <div
+              className='bg-red-100 border border-red-400 text-red-700 my-4 px-4 py-4 rounded'
+              role='alert'
+            >
+              <strong class='font-bold'>{errorMessage}</strong>
+            </div>
+          )}
+          
         <div className="text-center">
           <button onClick={handleSendMail} className="bg-[#112D4E] py-2 px-8 rounded-xl mb-20 mt-10">
             <div className="flex flex-row justify-center items-center">
@@ -117,6 +138,7 @@ const Offer = ({offers}) => {
               <p className="text-white ml-2">SEND MAIL</p>
             </div>
           </button>
+          
         </div>
         
       </div>

@@ -11,7 +11,6 @@ const Tinder = () => {
 
   return (
     <div className='mx-6 my-7'>
-      <Header />
       <Title />
       <Offer offers={offers} />
       
