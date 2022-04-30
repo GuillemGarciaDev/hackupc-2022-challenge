@@ -6,6 +6,8 @@ import {HiMail} from 'react-icons/hi'
 import { useNavigate } from 'react-router-dom';
 import Card from './Card'
 import {Link} from 'react-router-dom'
+import {AiFillHome} from 'react-icons/ai'
+import Title from './Title';
 
 const axios = require('axios').default;
 
@@ -35,7 +37,7 @@ const Offer = ({offers}) => {
 
   const handleSwipeRight = () => {
 
-    if (nextIndex + 1 < allOffers.length) {
+    if (nextIndex + 1 <= allOffers.length) {
       let tmp = emailSaved
       tmp.push({
         title: nextOffer.title,
@@ -85,6 +87,27 @@ const Offer = ({offers}) => {
     <>
       
       
+     { offers.length === 0 ?
+      
+
+      <div className='flex flex-col justify-center items-center mt-5 mx-12 mt-40 mb-40 text-center'>
+        <p className='text-3xl font-bold my-4'>Ops! We need to take a closer look</p>
+        <p className='my-4'>Help us to find you <span className="text-[#167DB7]">better</span> offers by changing your description</p>
+        <button className="bg-[#112D4E] px-8 py-2 rounded-xl my-4" >
+                <Link to='/'>
+                    <div className="flex flex-row justify-center items-center">
+                        <AiFillHome className="text-white mr-2"/>
+                        <p className="font-bold text-white ml-2">HOME</p>
+                    </div>
+                </Link>
+            </button>
+      </div>
+
+      :
+
+     <>
+      <Title />
+
       <Card currentOffer={nextOffer} />
 
       
@@ -172,6 +195,8 @@ const Offer = ({offers}) => {
         </div>
         
       </div>
+      
+      </>}
       
         
 
