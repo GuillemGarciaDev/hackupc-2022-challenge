@@ -4,15 +4,10 @@ import { ImCross } from 'react-icons/im';
 import { BsCheckLg } from 'react-icons/bs';
 import { HiMail } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
-<<<<<<< HEAD
 import Card from './Card'
 import {Link} from 'react-router-dom'
 import {AiFillHome} from 'react-icons/ai'
 import Title from './Title';
-=======
-import Card from './Card';
-import { Link } from 'react-router-dom';
->>>>>>> f8c9cbd16e6962a6799dbb5b96ed7372dc9a4f44
 
 const axios = require('axios').default;
 
@@ -38,14 +33,9 @@ const Offer = ({ offers }) => {
   const navigate = useNavigate();
 
   const handleSwipeRight = () => {
-<<<<<<< HEAD
 
     if (nextIndex + 1 <= allOffers.length) {
       let tmp = emailSaved
-=======
-    if (nextIndex + 1 < allOffers.length) {
-      let tmp = emailSaved;
->>>>>>> f8c9cbd16e6962a6799dbb5b96ed7372dc9a4f44
       tmp.push({
         title: nextOffer.title,
         link: nextOffer.link,
