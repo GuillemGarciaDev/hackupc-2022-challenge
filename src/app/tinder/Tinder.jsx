@@ -14,9 +14,7 @@ const Tinder = () => {
       <Header />
       <Title />
       <Offer offers={offers} />
-      <div className='my-10 flex flex-row justify-center'>
-        <Link to='/list'><p className='text-[#767676]'>See all</p></Link>
-      </div>
+      
       <Footer />
     </div>
   );
