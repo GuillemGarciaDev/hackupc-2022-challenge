@@ -7,7 +7,7 @@ const axios = require('axios').default;
 const placeholder = "I’m Guillem, a software developer who knows about React, Node.js, Express and MongoDB based inn Barcelona and wants to work remotely"
 
 const KEYWORD_EXTRACTOR_URL = "https://cors-anywhere.herokuapp.com/https://monkeylearn.com/word-cloud/api/extract/"
-const INFOJOBS_URL = "https://api.infojobs.net/api/7/offer?q="
+const API_URL = "https://hackupc-infojobs.herokuapp.com/offers"
 
 const Form = () => {
 
@@ -32,38 +32,14 @@ const Form = () => {
             }
 
             setProcessing(true)
+
+            let offers = []
+
+            let response = axios.get(API_URL + '?input=' +  description).then(response => {offers = response})
             
-            const extractionResult = keyword_extractor.extract(description, {
-                language: "english",
-                remove_digits: true,
-                return_changed_case:true,
-                remove_duplicates: false
-            })
-            
-            // Filtre de verbs i adjectius
-            
-            let words = ""
+            setProcessing(false)
 
-            for (let i = 0; i < extractionResult.length; ++i) {
 
-                words += extractionResult[i]
-                words += " "
-            }
-
-            console.log(words)
-
-            await axios.get(INFOJOBS_URL + words,{
-                auth: {
-                    username: 'c3e6bf34d3794d949004e8b056008d10',
-                    password: 'DJfEVWJOjVX+2a55/oRqKwG1yOVw3N2msUFmD0+ZrKj8Mo2pOl'
-                }
-            })
-            .then(function (response) {
-                setResponseData(response)
-              })
-              .catch(function (error) {
-                console.log(error);
-              })
 
         }
         else {
