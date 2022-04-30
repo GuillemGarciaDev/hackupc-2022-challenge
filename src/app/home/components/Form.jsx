@@ -6,7 +6,7 @@ const axios = require('axios').default;
 
 const placeholder = "I’m Guillem, a software developer who knows about React, Node.js, Express and MongoDB based inn Barcelona and wants to work remotely"
 
-const KEYWORD_EXTRACTOR_URL = "https://monkeylearn.com/word-cloud/api/extract/"
+const KEYWORD_EXTRACTOR_URL = "https://cors-anywhere.herokuapp.com/https://monkeylearn.com/word-cloud/api/extract/"
 
 
 const Form = () => {
@@ -42,7 +42,7 @@ const Form = () => {
             // console.log(extractionResult)
     
             await axios.post(KEYWORD_EXTRACTOR_URL, {
-                text: description,
+                data: description,
                 word_qty: 50
               })
               .then(function (response) {
