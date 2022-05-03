@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const axios = require('axios').default;
 const placeholder =
-  'I’m Guillem, a software developer who knows about React, Node.js, Express and MongoDB based in Barcelona and wants to work remotely';
+  'I’m a software developer who knows about React, Node.js, Express and MongoDB based in Barcelona and wants to work remotely';
 const API_URL = 'https://hackupc-infojobs.herokuapp.com/offers';
 
 const Form = () => {
