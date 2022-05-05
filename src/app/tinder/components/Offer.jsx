@@ -8,6 +8,7 @@ import Card from './Card'
 import {Link} from 'react-router-dom'
 import {AiFillHome} from 'react-icons/ai'
 import Title from './Title';
+import validator from 'validator'
 
 const axios = require('axios').default;
 
@@ -55,7 +56,7 @@ const Offer = ({ offers }) => {
   };
 
   const handleSendMail = async () => {
-    if (email != null && email.length > 0) {
+    if (email != null && email.length > 0 && validator.isEmail(email)) {
       setProcessing(true);
       let response = await axios.post(API_MAIL_URL, {
         email,
