@@ -96,29 +96,41 @@ const Offer = ({ offers }) => {
       :
 
      <>
-      <Title />
+      {nextIndex < allOffers.length ? 
+      <>
+        <Title />
 
-      <Card currentOffer={nextOffer} />
+        <Card currentOffer={nextOffer} />
 
-      <div className='flex justify-center items-center mx-12 mt-5'>
-        <div className='flex flex-row justify-between w-full'>
-          <div className='flex flex-row justify-center items-center rounded-full h-14 w-14 border-2 border-solid border-gray-100'>
-            <button onClick={handleSwipeLeft}>
-              <ImCross className='text-red-400 text-xl' />
-            </button>
-          </div>
-          <div className='flex flex-row justify-center items-center rounded-full h-14 w-14 border-2 border-solid border-gray-100'>
-            <a href={nextOffer.link} target='_blank' rel='noreferrer'>
-              <AiOutlineLink className='text-yellow-400 text-xl' />
-            </a>
-          </div>
-          <div className='flex flex-row justify-center items-center rounded-full h-14 w-14 border-2 border-solid border-gray-100'>
-            <button onClick={handleSwipeRight}>
-              <BsCheckLg className='text-green-400 text-xl' />
-            </button>
+        <div className='flex justify-center items-center mx-12 mt-5'>
+          <div className='flex flex-row justify-between w-full'>
+            <div className='flex flex-row justify-center items-center rounded-full h-14 w-14 border-2 border-solid border-gray-100'>
+              <button onClick={handleSwipeLeft}>
+                <ImCross className='text-red-400 text-xl' />
+              </button>
+            </div>
+            <div className='flex flex-row justify-center items-center rounded-full h-14 w-14 border-2 border-solid border-gray-100'>
+              <a href={nextOffer.link} target='_blank' rel='noreferrer'>
+                <AiOutlineLink className='text-yellow-400 text-xl' />
+              </a>
+            </div>
+            <div className='flex flex-row justify-center items-center rounded-full h-14 w-14 border-2 border-solid border-gray-100'>
+              <button onClick={handleSwipeRight}>
+                <BsCheckLg className='text-green-400 text-xl' />
+              </button>
+            </div>
           </div>
         </div>
+      </>
+      : 
+
+      <div className='flex flex-col justify-center items-center mt-5 mx-12 mt-40 mb-40 text-center'>
+        <p className='text-3xl font-bold my-4 text-[#112D4E]'>No way! <br/> We have run out of job offers</p>
       </div>
+      
+      
+      }
+        
 
       <div className='mt-6 flex flex-row justify-center'>
         <Link to='/list'>
